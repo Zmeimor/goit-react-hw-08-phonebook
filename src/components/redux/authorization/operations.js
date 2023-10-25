@@ -1,7 +1,7 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com/';
 
 // Utility to add JWT
 const setAuthHeader = token => {
@@ -13,12 +13,8 @@ const clearAuthHeader = () => {
   axios.defaults.headers.common.Authorization = '';
 };
 
-/*
- * POST @ /users/signup
- * body: { name, email, password }
- */
 export const register = createAsyncThunk(
-  'auth/register',
+  'auth/signup',
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post('/users/signup', credentials);
@@ -26,11 +22,11 @@ export const register = createAsyncThunk(
       setAuthHeader(res.data.token);
       return res.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.log('error');
+      thunkAPI.rejectWithValue(error.message);
     }
   }
 );
-
 /*
  * POST @ /users/login
  * body: { email, password }
@@ -49,10 +45,6 @@ export const logIn = createAsyncThunk(
   }
 );
 
-/*
- * POST @ /users/logout
- * headers: Authorization: Bearer token
- */
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await axios.post('/users/logout');
@@ -68,7 +60,7 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
  * headers: Authorization: Bearer token
  */
 export const refreshUser = createAsyncThunk(
-  '/users/current',
+  'auth/refresh',
   async (_, thunkAPI) => {
     // Reading the token from the state via getState()
     const state = thunkAPI.getState();
@@ -82,7 +74,7 @@ export const refreshUser = createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
       setAuthHeader(persistedToken);
-      const res = await axios.get('/users/me');
+      const res = await axios.get('/users/current');
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

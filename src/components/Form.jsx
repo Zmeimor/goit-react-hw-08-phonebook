@@ -1,15 +1,15 @@
 import { Button } from './Button';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {selectContacts } from '../redux/contacts/selectors';
-import { addContact } from '../redux/contacts/operations';
+import { selectContacts } from './redux/contax/selectors';
+import { addContact } from './redux/contax/operations';
 
 export function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
-  const  items  = useSelector(selectContacts);
+  const { items } = useSelector(selectContacts);
 
   const handleInput = evt => {
     setName(evt.target.value);
@@ -17,7 +17,7 @@ export function Form() {
 
   const handleNumber = evt => {
     const stringNumber = evt.target.value;
-    setNumber(Number(stringNumber));
+    setNumber(stringNumber);
   };
 
   const handleSubmit = evt => {
@@ -31,7 +31,13 @@ export function Form() {
     } else if (name.length === 0) {
       alert('Fields must be filled!');
     } else {
+      // console.log({ name, number });
       dispatch(addContact({ name, number }));
+      // const contact = {
+      //   ...data,
+      //   id: nanoid(),
+      // };
+      // setContacts(prevState => [...prevState, contact]);
     }
     reset();
   };
