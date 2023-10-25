@@ -3,8 +3,8 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setFilter } from '../redux/contax/filtersSlice';
-import { selectFilter } from '../redux/contax/selectors';
+import { setFilter } from '../../redux/contax/filtersSlice';
+import { selectFilter } from '../../redux/contax/selectors';
 
 export const Filter = () => {
   // { value, onChangeFilter }

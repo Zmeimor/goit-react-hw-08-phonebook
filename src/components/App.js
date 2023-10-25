@@ -1,21 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from './redux/contax/operations';
 // import { getContacts } from './redux/contax/selectors';
 import { useEffect, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout/Layout';
 import { PrivateRoute } from './PrivateRoute/PrivateRoute';
 import { RestrictedRoute } from './RestrictedRoute/RestrictedRoute';
-import { refreshUser } from './redux/authorization/operations';
-import { selectIsRefreshing } from './redux/authorization/selectors';
-
+import { refreshUser } from '../redux/authorization/operations';
+import { selectIsRefreshing } from '../redux/authorization/selectors';
 // import { useAuth } from '../hook/useAuth';
 
 // import { setStatusFilter } from './redux/filtersSlice';
 const ContactList = lazy(() => import('./ContactList/ContactList'));
-const HomePage = lazy(() => import('./pages/Home'));
-const RegisterPage = lazy(() => import('./pages/Register'));
-const LoginPage = lazy(() => import('./pages/Login'));
+const HomePage = lazy(() => import('../pages/Home'));
+const RegisterPage = lazy(() => import('../pages/Register'));
+const LoginPage = lazy(() => import('../pages/Login'));
 
 export function App() {
   const dispatch = useDispatch();
@@ -26,11 +24,6 @@ export function App() {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  // Вызываем операцию
-  useEffect(() => {
-    dispatch(fetchContacts());
-    console.log(dispatch);
-  }, [dispatch]);
 
   return isRefreshing ? (
     <b>Refreshing user...</b>
@@ -63,3 +56,4 @@ export function App() {
     </Routes>
   );
 }
+

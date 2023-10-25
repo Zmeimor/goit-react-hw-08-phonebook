@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from '../redux/authorization/operations';
-import { selectIsLoggedIn } from '../redux/authorization/selectors';
-// import css from './RegisterForm.module.css';
+import { register } from '../../redux/authorization/operations';
+import { selectIsLoggedIn } from '../../redux/authorization/selectors';
+import styles from './RegisterForm.module.css';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -25,29 +25,31 @@ export const RegisterForm = () => {
 
   return (
     <form
-      //   className={css.form}
+    className={styles.Forms}
       onSubmit={handleSubmit}
       autoComplete="off"
     >
       <label
-      //   className={css.label}
+       className={styles.registNEP}
       >
         Username
         <input type="text" name="name" />
       </label>
       <label
-      //   className={css.label}
+      className={styles.registNEP}
       >
         Email
         <input type="email" name="email" />
       </label>
       <label
-      //   className={css.label}
+      className={styles.registNEP}
       >
         Password
         <input type="password" name="password" />
       </label>
-      <button type="submit">Register</button>
+      <button
+      className={styles.Regist}
+       type="submit">Register</button>
     </form>
   );
 };

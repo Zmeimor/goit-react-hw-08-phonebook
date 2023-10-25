@@ -2,17 +2,17 @@
 // import React from 'react';
 // import PropTypes from 'prop-types';
 import styles from './ContactList.module.css';
-// import { useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   useSelector,
-  // useDispatch
+  useDispatch
 } from 'react-redux';
-// import { fetchContacts } from '../redux/contax/operations';
+import { fetchContacts } from '../../redux/contax/operations';
 import {
   selectContacts,
   // selectFilter,
   selectVisibleContacts,
-} from '../redux/contax/selectors';
+} from '../../redux/contax/selectors';
 // import { deleteContact } from '../redux/operations';
 // import { getFilter } from '../redux/contax/selectors';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
@@ -22,14 +22,18 @@ import { Filter } from '../Filter/Filter';
 import { ContactItem } from 'components/ContactItem/ContactItem';
 
 const ContactList = () => {
-  // const dispatch = useDispatch();
+ 
   const {
     // items,
     isLoading,
     error,
   } = useSelector(selectContacts);
   const getVisibleContacts = useSelector(selectVisibleContacts);
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+    console.log(dispatch);
+  }, [dispatch]);
   // const filters = useSelector(selectFilter);
   // console.log(items);
   // useEffect(() => {
