@@ -6,7 +6,10 @@ export default function Login() {
     <HelmetProvider>
       <div>
         <Helmet>
+          {/* <p> */}
+          {/* Haven't got an acount yet? */}
           <title>Login</title>
+          {/* </p> */}
         </Helmet>
         <LoginForm />
       </div>
