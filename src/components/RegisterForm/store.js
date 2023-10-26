@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { contactsReducer } from './contax/contactsSlice';
-// import { createAction, createReducer } from '@reduxjs/toolkit';
 import { filterReducer } from './contax/filtersSlice';
 import { authReducer } from './authorization/authSlice';
 import {
@@ -38,5 +37,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-// export const persistor = persistStore(store);

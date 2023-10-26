@@ -31,13 +31,7 @@ export function Form() {
     } else if (name.length === 0) {
       alert('Fields must be filled!');
     } else {
-      // console.log({ name, number });
       dispatch(addContact({ name, number }));
-      // const contact = {
-      //   ...data,
-      //   id: nanoid(),
-      // };
-      // setContacts(prevState => [...prevState, contact]);
     }
     reset();
   };

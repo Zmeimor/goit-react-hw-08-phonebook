@@ -1,6 +1,3 @@
-// eslint-disable-next-line
-// import React from 'react';
-// import PropTypes from 'prop-types';
 import styles from './ContactList.module.css';
 import { useEffect } from 'react';
 import {
@@ -10,11 +7,8 @@ import {
 import { fetchContacts } from '../../redux/contax/operations';
 import {
   selectContacts,
-  // selectFilter,
   selectVisibleContacts,
 } from '../../redux/contax/selectors';
-// import { deleteContact } from '../redux/operations';
-// import { getFilter } from '../redux/contax/selectors';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { Form } from '../Form';
 import { Filter } from '../Filter/Filter';
@@ -32,19 +26,10 @@ const ContactList = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchContacts());
-    console.log(dispatch);
+    // console.log(dispatch);
   }, [dispatch]);
-  // const filters = useSelector(selectFilter);
-  // console.log(items);
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
 
-  // const normalizedFilter = filters.toLowerCase();
-  // const getVisibleContacts = items.filter(({ name }) =>
-  //   name.toLowerCase().includes(normalizedFilter)
-  // );
-  console.log(getVisibleContacts);
+  // console.log(getVisibleContacts);
   return (
     <div
       style={{

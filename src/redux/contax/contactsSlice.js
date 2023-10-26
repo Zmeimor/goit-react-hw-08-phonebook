@@ -17,8 +17,6 @@ const handleRejected = (state, action) => {
 const contactsInitialStateItem = fetchContacts();
 console.log(contactsInitialStateItem);
 
-// const contactsInitialState =
-
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
@@ -39,21 +37,13 @@ const contactsSlice = createSlice({
       state.items = action.payload;
       console.log(state.items);
     },
-    // setContacts(state, action) {
-    //   state.items = action.payload;
-    // },
+  
     [addContact.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
       state.items.push(action.payload);
     },
 
-    // removeContact(state, action) {
-    //   // console.log(state[1]);
-    // state.items = state.items.filter(
-    //   contact => contact.id !== action.payload
-    // );
-    // },
     [deleteContact.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
@@ -70,17 +60,4 @@ const contactsSlice = createSlice({
   },
 });
 
-// const persistConfig = {
-//   key: 'root',
-//   storage,
-//   blacklist: ['filter'],
-// };
-
-// export const persistedContactReducer = persistReducer(
-//   persistConfig,
-//   contactsSlice.reducer
-// );
-
-// Экспортируем генераторы экшенов и редюсер
-// export const { setContacts, addContact, deleteContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
